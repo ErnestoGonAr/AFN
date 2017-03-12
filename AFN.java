@@ -3,7 +3,7 @@
 public class AFN{
 
   //Caracteristicas del automata
-  public char alf[];
+  public String alf[];
   public String q[];
   public String s;
   public String f[];
@@ -18,6 +18,7 @@ public class AFN{
     iniArreglos(f,this.f);
 
     //inicializar la tabla de transiciones
+    iniTran(t);
 
   }
 
@@ -25,7 +26,7 @@ public class AFN{
     //Inicializar alf,q,s,f
     arreglo = cadena.split(",");
   }
-
+  
   private void iniTran(String arreglo[][]){
     //Metodo para inicializar la tabla de transiciones
     int a = arreglo.length();
