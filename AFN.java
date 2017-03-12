@@ -34,7 +34,7 @@ public class AFN{
     if(a>b) x = a;
     else x = b;
 
-    t = new String[a][b][x]
+    t = new String[a][b][x];
   }
 
 
