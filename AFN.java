@@ -7,7 +7,7 @@ public class AFN{
   public String q[];
   public String s;
   public String f[];
-  public String t[][][];
+  public String tablaTranciones[][][];
 
   public AFN(String alf, String q, String s, String f){
 
