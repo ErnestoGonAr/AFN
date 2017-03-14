@@ -1,4 +1,4 @@
-import javafx.application.Application;
+ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -6,22 +6,107 @@ import javafx.scene.layout.GridPane;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class VentanaAFN extends Application{
 
-  public void start(Stage stage) {
+    Stage stageTemporal;
+    Scene scenePantallaPrincipal,scenePantallaTabla;
 
-    GridPane gridPane = new GridPane();
-    gridPane.setPadding(new Insets(5));
-    gridPane.setHgap(5);
-    gridPane.setVgap(5);
+    Button buttonTablaTransiciones, buttonPrincipal;
+    TextField txtQ,txtS,txtF,txtZigma;
+    Label lblQ,lblS,lblF,lblZigma;
 
-    Group root = new Group(gridPane);
-    Scene scene = new Scene(root, 800, 600);
+    @Override
+    public void start(Stage stageOrigen) throws Exception{
+        stageTemporal = stageOrigen;
+        stageTemporal.setOnCloseRequest( e -> stageOrigen.close() );
 
-    stage.setTitle("Validador de cadenas de AFN");
-    stage.setScene(scene);
-    stage.show();
-}
+        GridPane gridPane = new GridPane();
+        gridPane.setPadding(new Insets(5));
+        gridPane.setHgap(5);
+        gridPane.setVgap(5);
 
-}
+        scenePantallaPrincipal = new Scene(gridPane, 800, 600);
+
+        tablaTransiciones(4,6);
+
+        buttonTablaTransiciones = new Button("Llenar Tabla"); //Generar una ventana para llenar la tabla
+        buttonTablaTransiciones.setOnAction(e-> stageTemporal.setScene(scenePantallaTabla) );
+
+        txtQ = new TextField();
+        txtS = new TextField();
+        txtF = new TextField();
+        txtZigma = new TextField();
+
+        lblQ = new Label("Q = ");
+        lblS = new Label("s = ");
+        lblF = new Label("F = ");
+        lblZigma = new Label("Zigma = ");
+
+        GridPane.setConstraints(buttonTablaTransiciones,0,4);
+        GridPane.setConstraints(lblQ,0,0);
+        GridPane.setConstraints(txtQ,1,0);
+        GridPane.setConstraints(lblF,0,1);
+        GridPane.setConstraints(txtF,1,1);
+        GridPane.setConstraints(lblS,0,2);
+        GridPane.setConstraints(txtS,1,2);
+        GridPane.setConstraints(lblZigma,0,3);
+        GridPane.setConstraints(txtZigma,1,3);
+
+        gridPane.getChildren().addAll(
+                buttonTablaTransiciones,
+                lblQ,
+                txtQ,
+                lblS,
+                txtS,
+                lblF,
+                txtF,
+                lblZigma,
+                txtZigma
+        );
+
+        stageTemporal.setTitle("Validador de cadenas de AFN");
+        stageTemporal.setScene(scenePantallaPrincipal);
+        stageTemporal.show();
+    }//start
+
+    public void tablaTransiciones(int x, int y){
+        GridPane gridPane = new GridPane();
+        gridPane.setPadding(new Insets(10,10,10,10));
+        gridPane.setHgap(5);
+        gridPane.setVgap(5);
+
+        buttonPrincipal = new Button("Regresar a la pantalla Principal");
+        buttonPrincipal.setOnAction( e -> stageTemporal.setScene(scenePantallaPrincipal));
+
+        GridPane.setConstraints(buttonPrincipal,0,1);
+
+        for(int i=0;i<=4;i++){
+
+        }
+
+        for(int i=0;i<=4;i++){
+
+        }
+
+        gridPane.getChildren().add(
+                buttonPrincipal
+        );
+
+        scenePantallaTabla = new Scene(gridPane,800,600);
+    }//tablaTransiciones
+
+    public int columnasTablaTransiciones(String alfabeto){
+        return 4;
+    }//columnasTablaTransiciones
+
+    public int filasTablaTransiciones(String estados){
+        return 6;
+    }//columnasTablaTransiciones
+
+    public static void main(String []args){
+         launch(args);
+    }//main
+
+}//VentanaAFN
