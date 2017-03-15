@@ -7,7 +7,6 @@ public class AFN{
   public String s;
   public String f[];
   public String alf[];
-  public ArrayList trans[][];
 
   //Inicializa el alfabeto, se tiene que mandar la cadena del txtfield bien
   public boolean iniAlf(String cadena){
@@ -17,7 +16,7 @@ public class AFN{
     if(cadena.charAt(cadena.length()-1)!='}') return false;
     //quitar corchetes
     String temp[] = (cadena.substring(1,cadena.length()-1)).split(",");
-    for(int i = 0, i <= temp.length(),i++){
+    for(int i = 0;i <= temp.length();i++){
       if(temp[i].lengt()!=1)return false;
     }
     alf = temp;
@@ -25,6 +24,7 @@ public class AFN{
   }
 
   //puede inicializar Q y F, se le debe de mandar la cadena y el arreglo al cual esta inicializando
+
   public boolean iniAlf(String cadena,String arreglo[]){
     //Inicializar alf
     //revisar que inicie y termine con corchetes
@@ -32,22 +32,20 @@ public class AFN{
     if(cadena.charAt(cadena.length()-1)!='}') return false;
     //quitar corchetes
     String temp[] = (cadena.substring(1,cadena.length()-1)).split(",");
-    for(int i = 0, i <= temp.length(),i++){
+    for(int i = 0; i <= temp.length();i++){
       if(temp[i].lengt()!=2)return false;
     }
     arreglo = temp;
     return true;
   }
 
-  private void iniTran(){
+  //se supone que para cuando se ejecute esto ya tiene que tener bien
+  //el alfabeyo y los estados.
+  public String[][] tablaTran(){
     //Metodo para inicializar la tabla de transiciones
     int a = alf.length();
     int b = q.length();
-    int x = 0;
-    if(a>b) x = a;
-    else x = b;
-
-    t = new String[a][b][x];
+    return new String[a][b];
   }
 
 
