@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class VentanaAFN extends Application{
+ 
+    TableView tableView = new TableView();
 
     Stage stageTemporal;
     Scene scenePantallaPrincipal,scenePantallaTabla;
@@ -32,7 +34,7 @@ public class VentanaAFN extends Application{
         tablaTransiciones(4,6);
 
         buttonTablaTransiciones = new Button("Llenar Tabla"); //Generar una ventana para llenar la tabla
-        buttonTablaTransiciones.setOnAction(e-> stageTemporal.setScene(scenePantallaTabla) );
+        //buttonTablaTransiciones.setOnAction(e-> stageTemporal.setScene(scenePantallaTabla) );
 
         txtQ = new TextField();
         txtS = new TextField();
@@ -53,6 +55,10 @@ public class VentanaAFN extends Application{
         GridPane.setConstraints(txtS,1,1);
         GridPane.setConstraints(lblZigma,0,3);
         GridPane.setConstraints(txtZigma,1,3);
+        GridPane.setConstraints(tableView,2,4);
+
+        buttonTablaTransiciones.setOnAction(e-> crearColumnas(Integer.parseInt(txtZigma.getText()) ) );
+        //buttonTablaTransiciones.setOnAction(e-> crearFilas(Integer.parseInt(txtZigma.getText())-1) );
 
         gridPane.getChildren().addAll(
                 buttonTablaTransiciones,
@@ -63,7 +69,8 @@ public class VentanaAFN extends Application{
                 lblF,
                 txtF,
                 lblZigma,
-                txtZigma
+                txtZigma,
+                tableView
         );
 
         stageTemporal.setTitle("Validador de cadenas de AFN");
@@ -96,6 +103,22 @@ public class VentanaAFN extends Application{
 
         scenePantallaTabla = new Scene(gridPane,800,600);
     }//tablaTransiciones
+ 
+     public void crearColumnas(int valor){
+        tableView.getColumns().clear();
+        tableView.getItems().clear();
+        for(int x=1;x<=valor;x++){
+            TableColumn firstNameCol = new TableColumn(" "+x);
+            tableView.getColumns().addAll(firstNameCol);
+        }//CrearlasColumnas
+    }//crearColumnas
+
+    public void crearFilas(int valor){
+        for(int y=0;y<=valor;y++){
+            tableView.getItems().add(y,"Hola"+y);
+        }
+    }
+
 
     public int columnasTablaTransiciones(String alfabeto){
         return 4;
