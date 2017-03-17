@@ -110,8 +110,21 @@ public class VentanaAFN extends Application{
         for(int x=1;x<=valor;x++){
             TableColumn firstNameCol = new TableColumn(" "+x);
             tableView.getColumns().addAll(firstNameCol);
+            agregarCampo(tableView);
         }//CrearlasColumnas
     }//crearColumnas
+    
+   private void agregarCampo(TableView tabla){
+        ObservableList<Map> todosLosDatos = tabla.getItems();
+        int compensacion = todosLosDatos.size();
+        Map<String, String> campoDato = new HashMap<>();
+         for(int j= 0; j < tabla.getColumns().size(); j++){
+             String mapKey = Character.toString((char) ('A'+j));
+             String valor = mapKey + (compensacion + 1);
+             campoDato.put(mapKey,valor);
+         }
+         todosLosDatos.add(campoDato);
+    }
 
     public void crearFilas(int valor){
         for(int y=0;y<=valor;y++){
