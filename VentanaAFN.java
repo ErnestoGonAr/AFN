@@ -1,15 +1,15 @@
- import javafx.application.Application;
+import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+
+
 
 public class VentanaAFN extends Application{
- 
+
     TableView tableView = new TableView();
 
     Stage stageTemporal;
@@ -103,7 +103,7 @@ public class VentanaAFN extends Application{
 
         scenePantallaTabla = new Scene(gridPane,800,600);
     }//tablaTransiciones
- 
+
      public void crearColumnas(int valor){
         tableView.getColumns().clear();
         tableView.getItems().clear();

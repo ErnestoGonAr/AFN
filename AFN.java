@@ -12,12 +12,13 @@ public class AFN{
   public boolean iniAlf(String cadena){
     //Inicializar alf
     //revisar que inicie y termine con corchetes
-    if(cadena.chartAt(0)!='{') return false;
-    if(cadena.charAt(cadena.length()-1)!='}') return false;
+    if(cadena.substring(0,1)!="{") return false;
+    int aux = cadena.length();
+    if(cadena.substring(aux-1,aux)!="}") return false;
     //quitar corchetes
-    String temp[] = (cadena.substring(1,cadena.length()-1)).split(",");
-    for(int i = 0;i <= temp.length();i++){
-      if(temp[i].lengt()!=1)return false;
+    String temp[] = (cadena.substring(1,aux-1)).split(",");
+    for(int i = 0;i <= temp.length;i++){
+      if(temp[i].length()!=1)return false;
     }
     alf = temp;
     return true;
@@ -28,12 +29,14 @@ public class AFN{
   public boolean iniAlf(String cadena,String arreglo[]){
     //Inicializar alf
     //revisar que inicie y termine con corchetes
-    if(cadena.chartAt(0)!='{') return false;
-    if(cadena.charAt(cadena.length()-1)!='}') return false;
+    if(cadena.substring(0,1)!="{") return false;
+    int aux = cadena.length();
+    if(cadena.substring(aux-1,aux)!="}") return false;
     //quitar corchetes
-    String temp[] = (cadena.substring(1,cadena.length()-1)).split(",");
-    for(int i = 0; i <= temp.length();i++){
-      if(temp[i].lengt()!=2)return false;
+    String temp[] = (cadena.substring(1,aux-1)).split(",");
+
+    for(int i = 0; i <= temp.length;i++){
+      if(temp[i].length()!=2)return false;
     }
     arreglo = temp;
     return true;
@@ -43,8 +46,8 @@ public class AFN{
   //el alfabeyo y los estados.
   public String[][] tablaTran(){
     //Metodo para inicializar la tabla de transiciones
-    int a = alf.length();
-    int b = q.length();
+    int a = alf.length;
+    int b = q.length;
     return new String[a][b];
   }
 
