@@ -210,7 +210,7 @@ public class AFN{
 
     a.validaTabla(a.tablaT);
 
-    System.out.println(a.validaCadena("xxy",a.s));
+    System.out.println(a.validaCadena("xxxxxxxxxxxxxxxx",a.s));
   }
 
 }
