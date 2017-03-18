@@ -113,7 +113,7 @@ public class VentanaAFN extends Application{
             agregarCampo(tableView);
         }//CrearlasColumnas
     }//crearColumnas
-    
+
    private void agregarCampo(TableView tabla){
         ObservableList<Map> todosLosDatos = tabla.getItems();
         int compensacion = todosLosDatos.size();
