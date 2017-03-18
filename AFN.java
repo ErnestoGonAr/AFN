@@ -7,6 +7,7 @@ public class AFN{
   public String s;
   public String f[];
   public String alf[];
+  public String tablaT[][];
 
   //Inicializa el alfabeto
   public boolean iniAlf(String cadena){
@@ -75,25 +76,74 @@ public class AFN{
   }
   //se supone que para cuando se ejecute esto ya tiene que tener bien
   //el alfabeyo y los estados.
-  public String[][] tablaTran(){
+  public void tablaTran(){
     //Metodo para inicializar la tabla de transiciones
     int a = alf.length;
     int b = q.length;
-    return new String[a][b];
+    tablaT = new String[a][b];
   }
 
+  public boolean validaTabla(String tran[][]){
+    for(int i = 0;i<tran.length;i++){
+      for(int j = 0;j<tran[i].length;j++)
+      if(validaCelda(tran[i][j]))System.out.println(i+","+j);
+    }
+    return true;
+  }
 
+  private boolean validaCelda(String cadena){
+    //revisar si es -
+    if(cadena.equals("-")) return true;
+    //revisar que inicie y termine con corchetes
+    if(cadena.equals(""))return false;
+    if(cadena.charAt(0)!='{') return false;
+    int aux = cadena.length();
+    if(cadena.charAt(aux-1)!='}') return false;
+    //quitar corchetes
+    String temp[] = (cadena.substring(1,aux-1)).split(",");
+    //revisar que no halla cadenas vacias.
+    String aux1 = "";
+    int bandera= 0;
+    for(int i = 0; i < temp.length;i++){
+      if(temp[i].length()==0 || temp[i].equals("")) return false;
+      aux1 = temp[i];
 
+      for(int j = 0;j<this.q.length;j++){
+        if(this.q[j].equals(aux1))bandera++;
+      }
+
+    }
+    if(bandera!=temp.length)return false;
+    return true;
+  }
 
   //Pruebas locochonas
   public static void main(String[] args) {
+    //Creacion del objeto
     AFN a = new AFN();
+
+    //Introduccion de las caracteristicas
     System.out.println(a.iniQ("{q1,q2}"));
     System.out.println(a.iniS("q1"));
     System.out.println(a.inif("{q2}"));
     System.out.println(a.iniAlf("{a,b}"));
 
+    //Creacion de la tabla de tranciciones
+    a.tablaTran();
+    a.tablaT[0][0]="{q2}";
+    a.tablaT[1][0]="-";
+    a.tablaT[0][1]="-";
+    a.tablaT[1][1]="{q1}";
+
+    a.validaTabla(a.tablaT);
+
+    
+
   }
+
+
+
+
 
 
 }
